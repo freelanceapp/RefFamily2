@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">RefFamily</string>
+    <string name="map_api_key">AIzaSyDWL4T8WERSHrXQ464jk8pKQf_0WLiDbgE</string>
+    <string name="search_key">AIzaSyDWL4T8WERSHrXQ464jk8pKQf_0WLiDbgE</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="next">Next</string>
+    <string name="code">Code</string>
+    <string name="login">Login</string>
+    <string name="download_customer_app">Dowanload Customer App</string>
+    <string name="skip">Skip</string>
+    <string name="confirm">Confirm</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="field_required">Field Required</string>
+    <string name="inv_email">InValid Email</string>
+    <string name="choose_banner">Choose Baaner</string>
+    <string name="profile_image">Profile Image</string>
+    <string name="banner">Banner</string>
+    <string name="ipan_number_length_error">Ipan Number Length Error</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="ipan_number">Ipan Number</string>
+    <string name="category">Category</string>
+    <string name="select_location_on_map">Select Location On Map</string>
+    <string name="something">Palease Check Internet Connection</string>
+    <string name="country_code">Country Code</string>
+    <string name="failed">Failed</string>
+    <string name="wait">Wait</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="perm_image_denied">Permission image denied</string>
+    <string name="code_verification">Code Verfication</string>
+    <string name="enter_code_sent_to">Enter Code Sent To You</string>
+    <string name="inv_code">Invalid Code</string>
+    <string name="resend_in">Resend In</string>
+    <string name="resend">Resend</string>
+
+</resources>
