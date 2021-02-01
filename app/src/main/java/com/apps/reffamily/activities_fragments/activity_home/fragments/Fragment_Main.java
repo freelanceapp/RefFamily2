@@ -209,11 +209,15 @@ public class Fragment_Main extends Fragment {
                 binding.recViewCategory.setVisibility(View.GONE);
                 binding.recViewOffers.setVisibility(View.GONE);
                 binding.linearNoData.setVisibility(View.GONE);
+                binding.addBtn.setVisibility(View.GONE);
             } else {
                 binding.llsubscribe.setVisibility(View.GONE);
                 binding.recViewCategory.setVisibility(View.VISIBLE);
                 binding.recViewOffers.setVisibility(View.VISIBLE);
+                binding.addBtn.setVisibility(View.VISIBLE);
+
                 getCategoryData();
+
 
             }
         }
