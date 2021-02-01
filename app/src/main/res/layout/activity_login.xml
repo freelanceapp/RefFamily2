@@ -11,10 +11,10 @@
             type="String" />
         <variable
             name="listener"
-            type="com.reffamily.interfaces.Listeners.LoginListener" />
+            type="com.apps.reffamily.interfaces.Listeners.LoginListener" />
         <variable
             name="loginModel"
-            type="com.reffamily.models.LoginModel" />
+            type="com.apps.reffamily.models.LoginModel" />
     </data>
     <ScrollView
         android:layout_width="match_parent"
@@ -22,14 +22,13 @@
         tools:context="com.refFamily.activities_fragments.activity_login.LoginActivity"
         android:fillViewport="true"
         android:fitsSystemWindows="true"
-        android:background="@color/white"
+        android:background="@drawable/splash2"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background='@{lang.equals("ar")?@drawable/back:@drawable/back_en}'
             >
 
 
@@ -51,7 +50,7 @@
                 android:id="@+id/tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -190,8 +189,9 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginBottom="80dp"
+                android:layout_marginBottom="8dp"
+
+
                 >
                 <ImageView
                     android:layout_width="25dp"
@@ -203,6 +203,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="15sp"
                     android:text="@string/download_customer_app"
                     />
             </LinearLayout>

@@ -11,11 +11,11 @@
 
         <variable
             name="listener"
-            type="com.reffamily.interfaces.Listeners.SignUpListener" />
+            type="com.apps.reffamily.interfaces.Listeners.SignUpListener" />
 
         <variable
             name="model"
-            type="com.reffamily.models.SignUpModel" />
+            type="com.apps.reffamily.models.SignUpModel" />
 
 
     </data>
@@ -33,9 +33,7 @@
 
             >
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+
 
 
                 <LinearLayout
@@ -45,25 +43,15 @@
                     android:orientation="vertical"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
-
-                        android:orientation="horizontal"
-                        android:padding="15dp">
 
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="5dp">
+
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:layout_marginTop="50dp"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="10dp"
                                 android:singleLine="true"
@@ -74,9 +62,9 @@
                             <androidx.cardview.widget.CardView
                                 android:layout_width="wrap_content"
                                 android:layout_height="120dp"
-                                android:layout_marginStart="5dp"
+                                android:layout_marginStart="28dp"
                                 android:layout_marginTop="5dp"
-                                android:layout_marginEnd="5dp"
+                                android:layout_marginEnd="28dp"
                                 android:layout_marginBottom="5dp"
                                 android:onClick="@{()->listener.openSheet(0)}"
                                 app:cardBackgroundColor="@color/white"
@@ -96,9 +84,7 @@
 
 
                             </androidx.cardview.widget.CardView>
-                        </LinearLayout>
 
-                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_identity"
@@ -118,12 +104,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginStart="28dp"
+                        android:layout_marginEnd="28dp"
                         android:layout_marginTop="12dp"
                         android:background="@drawable/small_stroke_primary"
                         android:src="@drawable/ic_gallery"
                         android:onClick="@{()->listener.openSheet(1)}"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_identity" />
+                        app:layout_constraintTop_toBottomOf="@id/tv_identity"
+                        tools:ignore="RtlCompat" />
                     <EditText
                         android:id="@+id/edtName"
                         error="@{model.error_name}"
@@ -257,6 +245,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="15dp"
                         android:gravity="center_vertical"
                         android:text="@string/select_location_on_map"
                         android:textColor="@color/black"
@@ -338,7 +328,6 @@
 
 
                 </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
 

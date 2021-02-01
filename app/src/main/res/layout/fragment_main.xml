@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    >
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="lang"
+            type="String"
+
+            />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp"
+                android:id="@+id/add_btn"
+                android:scaleType="center"
+                android:src="@drawable/ic_add_2"
+                android:tint="@color/white"
+                />
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nested"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:id="@+id/flSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recViewCategory"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+
+                        <ProgressBar
+                            android:id="@+id/progBarCategory"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flMostSeller"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minHeight="200dp"
+
+
+                        >
+
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recViewOffers"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp" />
+
+
+                        <LinearLayout
+                            android:id="@+id/linear_no_data"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            >
+
+                            <ImageView
+                                android:id="@+id/iv_no_data"
+                                android:layout_width="250dp"
+                                android:layout_height="250dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/no_orders"
+                                android:scaleType="centerCrop"
+                                android:textColor="@color/gray12"
+                                android:textSize="22sp"
+                          />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/no_data_to_view"
+                                android:textColor="@color/gray12"
+                                android:textSize="22sp"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:id="@+id/llsubscribe"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/you_must_subscribe_to_get_orders"
+                                android:textSize="18sp"
+                                android:layout_gravity="center"
+                                android:textColor="@color/gray12"
+                                android:gravity="center"
+                                />
+
+
+
+
+                            <Button
+                                android:id="@+id/btnBuy"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/small_rounded_white2"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="18sp"
+                                android:layout_margin="7dp"
+                                android:layout_gravity="center"
+                                android:text="@string/subscribe_now"
+                                android:padding="7dp"
+                                />
+                        </LinearLayout>
+
+                        <ProgressBar
+                            android:id="@+id/progBarOffers"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </FrameLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

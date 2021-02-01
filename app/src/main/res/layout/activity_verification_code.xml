@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/back"
+        android:background="@drawable/splash2"
         tools:context="com.refDelegateFamily.activities_fragments.activity_verification_code.VerificationCodeActivity">
 
         <TextView
@@ -23,7 +23,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="50dp"
-            android:textColor="@color/gray12"
+            android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:text="@string/code_verification"
             />
@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv1"
             android:layout_marginTop="10dp"
-            android:textColor="@color/gray12"
+            android:textColor="@color/colorPrimary"
             android:textSize="15sp"
             android:text="@string/enter_code_sent_to"
             />
@@ -68,9 +68,10 @@
             app:itemHeight="40dp"
             app:itemRadius="8dp"
             app:itemSpacing="5dp"
+            android:textColor="@color/colorPrimary"
             app:cursorColor="@color/colorPrimary"
             app:hideLineWhenFilled="true"
-            app:lineColor="@color/transparent"
+            app:lineColor="@color/colorPrimary"
             app:lineWidth="0dp"
             android:inputType="number"
             android:textSize="15sp"
