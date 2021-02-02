@@ -1,17 +1,20 @@
 package com.apps.reffamily.services;
 
 
+import com.apps.reffamily.models.AddProductModel;
 import com.apps.reffamily.models.AllCatogryModel;
 import com.apps.reffamily.models.AllProdutsModel;
 import com.apps.reffamily.models.CountryDataModel;
 import com.apps.reffamily.models.PlaceGeocodeData;
 import com.apps.reffamily.models.PlaceMapDetailsData;
+import com.apps.reffamily.models.ProductModel;
 import com.apps.reffamily.models.UserModel;
 
 import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -181,4 +184,59 @@ public interface Service {
             @Field("phone") String phone
 
     );
+    @Multipart
+    @POST("apiFamily/createNewFamilyProduct")
+    Call<ProductModel> addProduct(@Header("Authorization") String user_token,
+                                  @Part("title") RequestBody title,
+                                  @Part("category_id") RequestBody category_id,
+                                  @Part("price") RequestBody price,
+                                  @Part("old_price") RequestBody old_price,
+                                  @Part("offer_value") RequestBody offer_value,
+                                  @Part("desc") RequestBody desc,
+                                  @Part("have_offer") RequestBody have_offer,
+                                  @Part("offer_type") RequestBody offer_type,
+                                  @Part("offer_started_at") RequestBody offer_started_at,
+                                  @Part("offer_finished_at") RequestBody offer_finished_at,
+                                  @Part MultipartBody.Part main_image,
+                                  @Part List<MultipartBody.Part> images
+    );
+    @Multipart
+    @POST("apiFamily/editFamilyProduct")
+    Call<ProductModel> updateProduct(@Header("Authorization") String user_token,
+                                        @Part("product_id") RequestBody product_id,
+                                        @Part("title") RequestBody title,
+                                        @Part("category_id") RequestBody sub_category_id,
+                                        @Part("price") RequestBody price,
+                                        @Part("old_price") RequestBody old_price,
+                                        @Part("offer_value") RequestBody offer_value,
+                                        @Part("desc") RequestBody desc,
+                                        @Part("have_offer") RequestBody have_offer,
+                                        @Part("offer_type") RequestBody offer_type,
+                                        @Part("offer_started_at") RequestBody offer_started_at,
+                                        @Part("offer_finished_at") RequestBody offer_finished_at,
+                                        @Part MultipartBody.Part main_image
+    );
+    @FormUrlEncoded
+    @POST("apiFamily/editFamilyProduct")
+    Call<ProductModel> updateProduct(@Header("Authorization") String user_token,
+                                        @Field("product_id") int product_id,
+                                        @Field("title") String title,
+                                        @Field("category_id") int sub_category_id,
+                                        @Field("price") double price,
+                                        @Field("old_price") double old_price,
+                                        @Field("offer_value") String offer_value,
+                                        @Field("desc") String desc,
+                                        @Field("have_offer") String have_offer,
+                                        @Field("offer_type") String offer_type,
+                                        @Field("offer_started_at") String offer_started_at,
+                                        @Field("offer_finished_at") String offer_finished_at
+    );
+    @FormUrlEncoded
+    @POST("apiFamily/deleteSingleFamilyProduct")
+    Call<ResponseBody> deleteProduct(@Header("Authorization") String user_token,
+                                     @Field("product_id") String product_id
+
+    );
+
+
 }

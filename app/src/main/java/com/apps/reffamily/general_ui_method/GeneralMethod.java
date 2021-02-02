@@ -30,6 +30,12 @@ public class GeneralMethod {
 
         }
     }
+    @BindingAdapter("url")
+    public static void imageUrl(RoundedImageView imageView,String url)
+    {
+        Picasso.get().load(Uri.parse(url)).fit().into(imageView);
+    }
+
     @BindingAdapter("image")
     public static void image(View view, String endPoint) {
         if (view instanceof CircleImageView) {

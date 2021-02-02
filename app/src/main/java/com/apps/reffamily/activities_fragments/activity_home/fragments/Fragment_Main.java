@@ -18,8 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.apps.reffamily.R;
+import com.apps.reffamily.activities_fragments.activity_add_Product.AddProductActivity;
 import com.apps.reffamily.activities_fragments.activity_home.HomeActivity;
 import com.apps.reffamily.activities_fragments.activity_sign_up.SignUpActivity;
+import com.apps.reffamily.activities_fragments.activity_update_product.ProductDetialsActivity;
 import com.apps.reffamily.adapters.CategoryAdapter;
 import com.apps.reffamily.adapters.ProductsAdapter;
 import com.apps.reffamily.databinding.FragmentMainBinding;
@@ -85,7 +87,7 @@ public class Fragment_Main extends Fragment {
         binding.recViewCategory.setAdapter(categoryAdapter);
         binding.recViewOffers.setLayoutManager(new LinearLayoutManager(activity));
         binding.recViewOffers.setAdapter(homeProductAdapter);
-
+        getCategoryData();
         binding.addBtn.setOnClickListener(View -> {
 
             NavigateToAddProductActivity();
@@ -107,7 +109,7 @@ public class Fragment_Main extends Fragment {
                         if (response.isSuccessful() && response.body() != null) {
 
 
-                            ChangeStauts(response.body());
+                            //   ChangeStauts(response.body());
                             // binding.setModel(userModel);
                         } else {
 
@@ -197,8 +199,8 @@ public class Fragment_Main extends Fragment {
 
     private void NavigateToAddProductActivity() {
 
-//        Intent intent = new Intent(this.getContext(), AddProductActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this.getContext(), AddProductActivity.class);
+        startActivity(intent);
 
     }
 
@@ -226,6 +228,8 @@ public class Fragment_Main extends Fragment {
 
 
     public void showproduct(int position) {
+        productList.clear();
+        homeProductAdapter.notifyDataSetChanged();
         binding.progBarOffers.setVisibility(View.VISIBLE);
         binding.linearNoData.setVisibility(View.GONE);
 
@@ -284,6 +288,12 @@ public class Fragment_Main extends Fragment {
 
             }
         });
+
+    }
+    public void navigateToUpdateProductActivity(SingleProductModel productModel) {
+        Intent intent = new Intent(this.getActivity(), ProductDetialsActivity.class);
+        intent.putExtra("DATA", productModel);
+        startActivity(intent);
 
     }
 }

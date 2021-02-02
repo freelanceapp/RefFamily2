@@ -1,6 +1,7 @@
 package com.apps.reffamily.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.apps.reffamily.R;
+import com.apps.reffamily.activities_fragments.activity_home.fragments.Fragment_Main;
 import com.apps.reffamily.databinding.ProductRowBinding;
 import com.apps.reffamily.models.SingleProductModel;
 import com.apps.reffamily.models.UserModel;
 import com.apps.reffamily.preferences.Preferences;
+import com.apps.reffamily.tags.Tags;
 
 import java.util.List;
 import java.util.Locale;
@@ -60,10 +63,14 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     public void onBindViewHolder(@NonNull ProductsAdapterVH holder, int position) {
 
         holder.binding.setData(dataList.get(position));
+        Log.e("lldld", Tags.IMAGE_URL+dataList.get(position).getMain_image());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if (fragment instanceof Fragment_Main) {
+                    Fragment_Main fragment_main = (Fragment_Main) fragment;
+                    fragment_main.navigateToUpdateProductActivity(dataList.get(position));
+                }
             }
         });
 
@@ -72,7 +79,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
 //            holder.binding.name.setTextColor(context.getResources().getColor(R.color.white));
 //
 //        }
-
 
 
     }

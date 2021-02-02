@@ -48,7 +48,6 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
 
     private HomeActivity activity;
     private FragmentSettingBinding binding;
-//    private List<MarketCatogryModel.Data> dataList;
     private String lang;
     private Preferences preferences;
     private DefaultSettings defaultSettings;
@@ -63,26 +62,25 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
-      //  initView();
+        initView();
 
 
         return binding.getRoot();
     }
 
-//    private void initView() {
-//        dataList = new ArrayList<>();
-//        activity = (HomeActivity) getActivity();
-//        preferences = Preferences.newInstance();
-//
-//        userModel = preferences.getUserData(getActivity());
-//        defaultSettings = preferences.getAppSetting(activity);
-//        Paper.init(activity);
-//        lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
-//        binding.setLang(lang);
-//        binding.setActions(this);
-//        //binding.setBalance(balance);
-//        binding.setModel(userModel);
-//
+    private void initView() {
+        activity = (HomeActivity) getActivity();
+        preferences = Preferences.getInstance();
+
+        userModel = preferences.getUserData(getActivity());
+        defaultSettings = preferences.getAppSetting(activity);
+        Paper.init(activity);
+        lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
+        binding.setLang(lang);
+        binding.setActions(this);
+        //binding.setBalance(balance);
+        binding.setModel(userModel);
+
 //        if (defaultSettings != null) {
 //            if (defaultSettings.getRingToneName() != null && !defaultSettings.getRingToneName().isEmpty()) {
 //                binding.tvRingtoneName.setText(defaultSettings.getRingToneName());
@@ -93,18 +91,18 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
 //            binding.tvRingtoneName.setText(getString(R.string.default1));
 //
 //        }
-//
-//        binding.switchBtn.setOnClickListener(view -> {
-//            if (binding.switchBtn.isChecked()){
-//                updatePhoneStatus("show");
-//            }else {
-//                updatePhoneStatus("hidden");
-//
-//            }
-//        });
-//        getBalance();
-//
-//    }
+
+        binding.switchBtn.setOnClickListener(view -> {
+            if (binding.switchBtn.isChecked()){
+               // updatePhoneStatus("show");
+            }else {
+            //    updatePhoneStatus("hidden");
+
+            }
+        });
+     //   getBalance();
+
+    }
 //
 //    private void getBalance(){
 //        ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));

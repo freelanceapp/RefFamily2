@@ -64,6 +64,8 @@
                 android:layout_marginEnd="16dp"
                 android:gravity="start"
                 android:maxLines="2"
+                android:textSize="14sp"
+                android:textColor="@color/gray12"
                 android:text="@{data.desc}"
                 android:textAlignment="viewStart"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -84,6 +86,7 @@
                 android:paddingBottom="10dp"
                 android:text='@{data.price+" "+@string/sar}'
                 android:textColor="@color/white"
+                android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,6 +119,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="5dp"
+                    android:textSize="14sp"
                     android:text='@{data.offer_type.equals("per")?data.offer_value+" % ":data.offer_value+@string/sar}'
                     android:textColor="@color/white"
                     tools:ignore="RtlCompat" />
