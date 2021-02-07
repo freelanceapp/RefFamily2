@@ -36,9 +36,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private Fragment fragment;
 
 
-    public CategoryAdapter(Context context) {
-        this.context = context;
-    }
 
     public CategoryAdapter(List<SingleCategoryModel> dataList, Context context, Fragment fragment) {
         this.dataList = dataList;

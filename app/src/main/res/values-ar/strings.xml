@@ -88,5 +88,12 @@
     <string name="details">Detials</string>
     <string name="delete">Delete</string>
     <string name="back">Back</string>
+    <string name="expire_date">Expire Date</string>
+    <string name="before_discount">Before Discount</string>
+    <string name="after_discount">After Discount</string>
+    <string name="Add_subCategory">Add Sub Category</string>
+    <string name="department_image">Department Image</string>
+    <string name="category_desc">Category Desc</string>
+    <string name="send">Send</string>
 
 </resources>

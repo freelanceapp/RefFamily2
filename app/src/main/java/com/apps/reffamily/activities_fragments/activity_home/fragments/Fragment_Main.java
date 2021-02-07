@@ -143,17 +143,35 @@ public class Fragment_Main extends Fragment {
             @Override
             public void onResponse(Call<AllCatogryModel> call, Response<AllCatogryModel> response) {
                 binding.progBarCategory.setVisibility(View.GONE);
+
                 if (response.isSuccessful() && response.body() != null) {
-                    if (response.body().getData().size() > 0) {
+
+                    if(response.body().getStatus()==200){
+                        Log.e("dlldldlld",response.code()+"dldlldldld");
+
+                        if (response.body().getData().size() > 0) {
                         categoryList.clear();
                         categoryList.addAll(response.body().getData());
                         categoryAdapter.notifyDataSetChanged();
                     }
 
+                        else {
+                            binding.linearNoData.setVisibility(View.VISIBLE);
+                        }
+
+                    }
+                    else {
+                        Log.e("dlldldlld","dldlldldld");
+                        binding.linearNoData.setVisibility(View.VISIBLE);
+                    }
+
+
+
+
                 } else {
                     try {
 
-                        Log.e("error", response.code() + "_" + response.errorBody().string());
+                        Log.e("errorssssss", response.code() + "_" + response.errorBody().string());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -238,13 +256,20 @@ public class Fragment_Main extends Fragment {
             public void onResponse(Call<AllProdutsModel> call, Response<AllProdutsModel> response) {
                 binding.progBarOffers.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null) {
+                    if(response.body().getStatus()==200){
                     if (response.body().getData().size() > 0) {
+
                         productList.clear();
                         productList.addAll(response.body().getData());
                         homeProductAdapter.notifyDataSetChanged();
                     } else {
                         binding.linearNoData.setVisibility(View.VISIBLE);
+                    }}
+                    else {
+                        binding.linearNoData.setVisibility(View.VISIBLE);
+
                     }
+
 
                 } else {
                     try {

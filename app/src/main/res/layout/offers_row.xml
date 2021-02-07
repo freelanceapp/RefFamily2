@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.apps.reffamily.models.SingleProductModel" />
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:cardCornerRadius="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlCompat">
+
+                <ImageView
+                    android:id="@+id/offer_image"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    image="@{model.main_image}"
+                    ></ImageView>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="@{model.title}"
+                android:textColor="@color/gray12"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/cardImage"
+                app:layout_constraintTop_toTopOf="@+id/cardImage" />
+            <!--                android:text="وجبة مندي"-->
+
+
+            <ImageView
+                android:id="@+id/_img_calendar"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_calendar"
+                android:tint="@color/gray6"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/title" />
+
+            <TextView
+                android:id="@+id/tv_expire_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/expire_date"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/_img_calendar"
+                app:layout_constraintTop_toTopOf="@id/_img_calendar"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text='@{model.offer_finished_at}'
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/tv_expire_date"
+                app:layout_constraintTop_toTopOf="@id/_img_calendar"
+                tools:ignore="RtlCompat" />
+
+
+            <ImageView
+                android:id="@+id/img_money"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_calendar"
+                android:tint="@color/gray6"
+                app:layout_constraintStart_toStartOf="@id/title"
+                app:layout_constraintTop_toBottomOf="@id/_img_calendar" />
+
+            <TextView
+                android:id="@+id/tv_before_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/before_discount"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/_img_calendar"
+                app:layout_constraintTop_toTopOf="@id/img_money"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:id="@+id/tv_before_discount_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text='@{model.old_price+" "+ @string/sar}'
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@id/tv_before_discount"
+                app:layout_constraintTop_toTopOf="@id/tv_before_discount"
+                tools:ignore="RtlCompat" />
+
+
+            <ImageView
+                android:id="@+id/img_money1"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_calendar"
+                android:tint="@color/gray6"
+                app:layout_constraintStart_toEndOf="@id/tv_before_discount_value"
+                app:layout_constraintTop_toTopOf="@id/tv_after_discount_value"
+                tools:ignore="RtlCompat" />
+
+            <TextView
+                android:id="@+id/tv_after_discount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/after_discount"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toStartOf="@id/tv_after_discount_value"
+                app:layout_constraintStart_toEndOf="@id/img_money1"
+                app:layout_constraintTop_toTopOf="@id/img_money1"
+
+                tools:ignore="RtlCompat" />
+
+
+            <TextView
+                android:id="@+id/tv_after_discount_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text='@{model.price+" "+ @string/sar}'
+                android:textColor="@color/colorPrimary"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_after_discount"
+                app:layout_constraintTop_toTopOf="@id/tv_before_discount"
+                tools:ignore="RtlCompat" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/custom_bg_2"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:visibility='@{model.offer_value==0?View.GONE:View.VISIBLE}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_offers"
+                    android:tint="@color/white"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text='@{model.offer_type.equals("per")?model.offer_value+" % ":model.offer_value+@string/sar}'
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardImage">
+
+                <Button
+                    android:id="@+id/update_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/update"
+                    tools:ignore="RtlCompat" />
+
+                <Button
+                    android:id="@+id/delete_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="@color/color_red"
+                    android:text="@string/delete"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</layout>

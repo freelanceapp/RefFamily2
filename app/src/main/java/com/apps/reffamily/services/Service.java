@@ -29,6 +29,7 @@ public interface Service {
 
     @GET("api/countries")
     Call<CountryDataModel> getCountries(@Query(value = "lang") String lang);
+
     @FormUrlEncoded
     @POST("apiFamily/familyLogin")
     Call<UserModel> login(@Field("phone_code") String phone_code,
@@ -38,6 +39,7 @@ public interface Service {
 
     @GET("apiFamily/allBasicCategories")
     Call<AllCatogryModel> getcategories();
+
     @GET("apiFamily/allFamilyCategories")
     Call<AllCatogryModel> getcategories(
             @Header("Authorization") String user_token
@@ -49,6 +51,7 @@ public interface Service {
     Call<PlaceGeocodeData> getGeoData(@Query(value = "latlng") String latlng,
                                       @Query(value = "language") String language,
                                       @Query(value = "key") String key);
+
     @GET("place/findplacefromtext/json")
     Call<PlaceMapDetailsData> searchOnMap(@Query(value = "inputtype") String inputtype,
                                           @Query(value = "input") String input,
@@ -56,6 +59,7 @@ public interface Service {
                                           @Query(value = "language") String language,
                                           @Query(value = "key") String key
     );
+
     @Multipart
     @POST("apiFamily/familyRegister")
     Call<UserModel> signUpWithoutImage(@Part("name") RequestBody name,
@@ -90,7 +94,6 @@ public interface Service {
                                     @Part("longitude") RequestBody longitude,
                                     @Part("basic_category_id") RequestBody basic_category_id
     );
-
 
 
     @FormUrlEncoded
@@ -152,6 +155,7 @@ public interface Service {
                                            @Part("longitude") RequestBody longitude,
                                            @Part("category_id[]") List<RequestBody> category_id
     );
+
     @Multipart
     @POST("api/update-profile")
     Call<UserModel> updateProfileWithImagewithoutlogo(@Header("Authorization") String user_token,
@@ -171,6 +175,7 @@ public interface Service {
                                                       @Part("longitude") RequestBody longitude,
                                                       @Part("category_id[]") List<RequestBody> category_id
     );
+
     @FormUrlEncoded
     @POST("apiFamily/productsInHome")
     Call<AllProdutsModel> getProducts(
@@ -178,12 +183,14 @@ public interface Service {
             @Field("category_id") int category_id
 
     );
+
     @FormUrlEncoded
     @POST("apiFamily/getFamilyByPhone")
     Call<UserModel> getProfile(
             @Field("phone") String phone
 
     );
+
     @Multipart
     @POST("apiFamily/createNewFamilyProduct")
     Call<ProductModel> addProduct(@Header("Authorization") String user_token,
@@ -200,37 +207,40 @@ public interface Service {
                                   @Part MultipartBody.Part main_image,
                                   @Part List<MultipartBody.Part> images
     );
+
     @Multipart
     @POST("apiFamily/editFamilyProduct")
     Call<ProductModel> updateProduct(@Header("Authorization") String user_token,
-                                        @Part("product_id") RequestBody product_id,
-                                        @Part("title") RequestBody title,
-                                        @Part("category_id") RequestBody sub_category_id,
-                                        @Part("price") RequestBody price,
-                                        @Part("old_price") RequestBody old_price,
-                                        @Part("offer_value") RequestBody offer_value,
-                                        @Part("desc") RequestBody desc,
-                                        @Part("have_offer") RequestBody have_offer,
-                                        @Part("offer_type") RequestBody offer_type,
-                                        @Part("offer_started_at") RequestBody offer_started_at,
-                                        @Part("offer_finished_at") RequestBody offer_finished_at,
-                                        @Part MultipartBody.Part main_image
+                                     @Part("product_id") RequestBody product_id,
+                                     @Part("title") RequestBody title,
+                                     @Part("category_id") RequestBody sub_category_id,
+                                     @Part("price") RequestBody price,
+                                     @Part("old_price") RequestBody old_price,
+                                     @Part("offer_value") RequestBody offer_value,
+                                     @Part("desc") RequestBody desc,
+                                     @Part("have_offer") RequestBody have_offer,
+                                     @Part("offer_type") RequestBody offer_type,
+                                     @Part("offer_started_at") RequestBody offer_started_at,
+                                     @Part("offer_finished_at") RequestBody offer_finished_at,
+                                     @Part MultipartBody.Part main_image
     );
+
     @FormUrlEncoded
     @POST("apiFamily/editFamilyProduct")
     Call<ProductModel> updateProduct(@Header("Authorization") String user_token,
-                                        @Field("product_id") int product_id,
-                                        @Field("title") String title,
-                                        @Field("category_id") int sub_category_id,
-                                        @Field("price") double price,
-                                        @Field("old_price") double old_price,
-                                        @Field("offer_value") String offer_value,
-                                        @Field("desc") String desc,
-                                        @Field("have_offer") String have_offer,
-                                        @Field("offer_type") String offer_type,
-                                        @Field("offer_started_at") String offer_started_at,
-                                        @Field("offer_finished_at") String offer_finished_at
+                                     @Field("product_id") int product_id,
+                                     @Field("title") String title,
+                                     @Field("category_id") int sub_category_id,
+                                     @Field("price") double price,
+                                     @Field("old_price") double old_price,
+                                     @Field("offer_value") String offer_value,
+                                     @Field("desc") String desc,
+                                     @Field("have_offer") String have_offer,
+                                     @Field("offer_type") String offer_type,
+                                     @Field("offer_started_at") String offer_started_at,
+                                     @Field("offer_finished_at") String offer_finished_at
     );
+
     @FormUrlEncoded
     @POST("apiFamily/deleteSingleFamilyProduct")
     Call<ResponseBody> deleteProduct(@Header("Authorization") String user_token,
@@ -238,5 +248,27 @@ public interface Service {
 
     );
 
+    @GET("apiFamily/offersTab")
+    Call<AllProdutsModel> getOffers(
+            @Header("Authorization") String user_token
+            );
+
+    @FormUrlEncoded
+    @POST("api/update-product")
+    Call<AddProductModel> updateOffer(@Header("Authorization") String user_token,
+                                      @Field("id") int id,
+                                      @Field("family_id") int family_id,
+                                      @Field("old_price") String old_price,
+                                      @Field("offer_value") String offer_value,
+                                      @Field("have_offer") String have_offer
+    );
+
+
+    @FormUrlEncoded
+    @POST("api/delete-offer")
+    Call<ResponseBody> deleteOffer(@Header("Authorization") String user_token,
+                                   @Field("product_id") String product_id
+
+    );
 
 }

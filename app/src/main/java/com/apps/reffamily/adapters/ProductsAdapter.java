@@ -38,9 +38,6 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.Produc
     private Fragment fragment;
 
 
-    public ProductsAdapter(Context context) {
-        this.context = context;
-    }
 
     public ProductsAdapter(List<SingleProductModel> dataList, Context context, Fragment fragment) {
         this.dataList = dataList;
