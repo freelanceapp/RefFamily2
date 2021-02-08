@@ -55,6 +55,7 @@ public class AddSubCategoryActivity extends AppCompatActivity implements Listene
     private ActivityAddCategoryBinding binding;
     private Preferences preferences;
     private UserModel userModel;
+
     private String lang;
     private AddSubCategoryModel addSubCategoryModel;
 
