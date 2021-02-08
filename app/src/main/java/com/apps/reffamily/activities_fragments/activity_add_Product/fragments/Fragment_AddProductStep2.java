@@ -18,10 +18,13 @@ import com.apps.reffamily.R;
 import com.apps.reffamily.activities_fragments.activity_add_Product.AddProductActivity;
 import com.apps.reffamily.activities_fragments.activity_sign_up.SignUpActivity;
 import com.apps.reffamily.adapters.SpinnerCategoryAdapter;
+import com.apps.reffamily.adapters.SpinnerSubCategoryAdapter;
 import com.apps.reffamily.databinding.FragmentAddProductStep2Binding;
 import com.apps.reffamily.models.AddProductModel;
 import com.apps.reffamily.models.AllCatogryModel;
+import com.apps.reffamily.models.AllSubCategoryModel;
 import com.apps.reffamily.models.SingleCategoryModel;
+import com.apps.reffamily.models.SingleSubCategoryModel;
 import com.apps.reffamily.models.UserModel;
 import com.apps.reffamily.preferences.Preferences;
 import com.apps.reffamily.remote.Api;
@@ -45,9 +48,9 @@ public class Fragment_AddProductStep2 extends Fragment implements DatePickerDial
     private static final String TAG = "DATA";
     private FragmentAddProductStep2Binding binding;
     public AddProductModel.Data addProductModel = null;
-    private SingleCategoryModel categoryModel;
-    private List<SingleCategoryModel> categoryList = new ArrayList<>();
-    private SpinnerCategoryAdapter spinnerCategoryAdapter;
+    private SingleSubCategoryModel categoryModel;
+    private List<SingleSubCategoryModel> categoryList = new ArrayList<>();
+    private SpinnerSubCategoryAdapter spinnerCategoryAdapter;
     private Preferences preferences;
     private DatePickerDialog datePickerDialog;
     private String lang;
@@ -170,10 +173,10 @@ public class Fragment_AddProductStep2 extends Fragment implements DatePickerDial
             datePickerDialog.show(getActivity().getFragmentManager(), "");
         });
 
-        spinnerCategoryAdapter = new SpinnerCategoryAdapter(categoryList, addProductActivity);
+        spinnerCategoryAdapter = new SpinnerSubCategoryAdapter(categoryList, addProductActivity);
         binding.spinnerCategory.setAdapter(spinnerCategoryAdapter);
 
-        categoryModel = new SingleCategoryModel();
+        categoryModel = new SingleSubCategoryModel();
         categoryModel.setId(0);
         categoryModel.setTitle("Choose");
         categoryList.add(categoryModel);
@@ -208,9 +211,9 @@ public class Fragment_AddProductStep2 extends Fragment implements DatePickerDial
         ProgressDialog dialog = Common.createProgressDialog(addProductActivity, getString(R.string.wait));
         dialog.show();
 
-        Api.getService(Tags.base_url).getcategories("Bearer " + userModel.getData().getToken()).enqueue(new Callback<AllCatogryModel>() {
+        Api.getService(Tags.base_url).getcategories("Bearer " + userModel.getData().getToken()).enqueue(new Callback<AllSubCategoryModel>() {
             @Override
-            public void onResponse(Call<AllCatogryModel> call, Response<AllCatogryModel> response) {
+            public void onResponse(Call<AllSubCategoryModel> call, Response<AllSubCategoryModel> response) {
                 dialog.dismiss();
                 if (response.isSuccessful() && response.body() != null) {
                     if (response.body().getData().size() > 0) {
@@ -247,7 +250,7 @@ public class Fragment_AddProductStep2 extends Fragment implements DatePickerDial
             }
 
             @Override
-            public void onFailure(Call<AllCatogryModel> call, Throwable t) {
+            public void onFailure(Call<AllSubCategoryModel> call, Throwable t) {
                 dialog.dismiss();
                 try {
                     dialog.dismiss();

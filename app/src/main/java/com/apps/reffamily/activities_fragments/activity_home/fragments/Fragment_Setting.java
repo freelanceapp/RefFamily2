@@ -21,6 +21,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.apps.reffamily.R;
+import com.apps.reffamily.activities_fragments.activity_category.CategoryActivity;
 import com.apps.reffamily.activities_fragments.activity_home.HomeActivity;
 import com.apps.reffamily.activities_fragments.activity_login.LoginActivity;
 import com.apps.reffamily.databinding.FragmentSettingBinding;
@@ -360,8 +361,8 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
 
     @Override
     public void subCategories() {
-//        Intent intent = new Intent(activity, SubCategoryActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(activity, CategoryActivity.class);
+        startActivity(intent);
     }
 
     @Override

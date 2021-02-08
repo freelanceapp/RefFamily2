@@ -25,10 +25,12 @@ import com.apps.reffamily.activities_fragments.activity_update_product.ProductDe
 import com.apps.reffamily.adapters.CategoryAdapter;
 import com.apps.reffamily.adapters.ProductsAdapter;
 import com.apps.reffamily.databinding.FragmentMainBinding;
-import com.apps.reffamily.models.AllCatogryModel;
+import com.apps.reffamily.models.AllSubCategoryModel;
 import com.apps.reffamily.models.AllProdutsModel;
+import com.apps.reffamily.models.AllSubCategoryModel;
 import com.apps.reffamily.models.SingleCategoryModel;
 import com.apps.reffamily.models.SingleProductModel;
+import com.apps.reffamily.models.SingleSubCategoryModel;
 import com.apps.reffamily.models.UserModel;
 import com.apps.reffamily.preferences.Preferences;
 import com.apps.reffamily.remote.Api;
@@ -54,7 +56,7 @@ public class Fragment_Main extends Fragment {
     private UserModel user;
     private CategoryAdapter categoryAdapter;
     private ProductsAdapter homeProductAdapter;
-    private List<SingleCategoryModel> categoryList;
+    private List<SingleSubCategoryModel> categoryList;
     private List<SingleProductModel> productList;
     private UserModel userModel;
 
@@ -139,9 +141,9 @@ public class Fragment_Main extends Fragment {
 
         binding.progBarCategory.setVisibility(View.VISIBLE);
 
-        Api.getService(Tags.base_url).getcategories("Bearer " + userModel.getData().getToken()).enqueue(new Callback<AllCatogryModel>() {
+        Api.getService(Tags.base_url).getcategories("Bearer " + userModel.getData().getToken()).enqueue(new Callback<AllSubCategoryModel>() {
             @Override
-            public void onResponse(Call<AllCatogryModel> call, Response<AllCatogryModel> response) {
+            public void onResponse(Call<AllSubCategoryModel> call, Response<AllSubCategoryModel> response) {
                 binding.progBarCategory.setVisibility(View.GONE);
 
                 if (response.isSuccessful() && response.body() != null) {
@@ -191,7 +193,7 @@ public class Fragment_Main extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<AllCatogryModel> call, Throwable t) {
+            public void onFailure(Call<AllSubCategoryModel> call, Throwable t) {
                 binding.progBarCategory.setVisibility(View.GONE);
                 try {
                     binding.progBarCategory.setVisibility(View.GONE);

@@ -14,6 +14,7 @@ import com.apps.reffamily.R;
 import com.apps.reffamily.activities_fragments.activity_home.fragments.Fragment_Main;
 import com.apps.reffamily.databinding.CategoryRowBinding;
 import com.apps.reffamily.models.SingleCategoryModel;
+import com.apps.reffamily.models.SingleSubCategoryModel;
 import com.apps.reffamily.models.UserModel;
 import com.apps.reffamily.preferences.Preferences;
 
@@ -24,7 +25,7 @@ import io.paperdb.Paper;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryAdapterVH> {
 
-    private List<SingleCategoryModel> dataList;
+    private List<SingleSubCategoryModel> dataList;
     private Context context;
     private LayoutInflater inflater;
     private String lang;
@@ -37,7 +38,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
 
 
-    public CategoryAdapter(List<SingleCategoryModel> dataList, Context context, Fragment fragment) {
+    public CategoryAdapter(List<SingleSubCategoryModel> dataList, Context context, Fragment fragment) {
         this.dataList = dataList;
         this.context = context;
         this.fragment = fragment;

@@ -95,5 +95,6 @@
     <string name="department_image">Department Image</string>
     <string name="category_desc">Category Desc</string>
     <string name="send">Send</string>
+    <string name="suc">Sucess</string>
 
 </resources>

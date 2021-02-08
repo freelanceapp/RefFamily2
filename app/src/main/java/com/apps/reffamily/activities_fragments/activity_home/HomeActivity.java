@@ -78,11 +78,11 @@ public class HomeActivity extends AppCompatActivity {
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         userModel = preferences.getUserData(this);
-//        if (userModel.getData().getNotification_status().equals("on")) {
-//            binding.switchBtn.setChecked(true);
-//        } else {
-//            binding.switchBtn.setChecked(false);
-//        }
+        if (userModel.getData().getReceive_notifications().equals("yes")) {
+            binding.switchBtn.setChecked(true);
+        } else {
+            binding.switchBtn.setChecked(false);
+        }
 
         updateHomeUi();
         displayFragmentMain();
@@ -132,21 +132,19 @@ public class HomeActivity extends AppCompatActivity {
 //        }
 
 
-//        binding.switchBtn.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
-//                UserModel.User user = new UserModel.User();
-//
-//                if (isChecked) {
-//                    updateStatus("on");
-//                    user.setNotification_status("on");
-//                } else {
-//                    updateStatus("off");
-//                    user.setNotification_status("off");
-//
-//                }
-//            }
-//        });
+        binding.switchBtn.setOnCheckedChangeListener(new SwitchButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(SwitchButton view, boolean isChecked) {
+                UserModel.User user = new UserModel.User();
+
+                if (isChecked) {
+                    updateStatus("yes");
+                } else {
+                    updateStatus("no");
+
+                }
+            }
+        });
 
         if (userModel != null) {
             //updateToken();
@@ -402,56 +400,56 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
-//    private void updateStatus(String off) {
-//        Api.getService(Tags.base_url)
-//                .updateStatus("Bearer " + userModel.getData().getToken(), userModel.getData().getId(), off)
-//                .enqueue(new Callback<ResponseBody>() {
-//                    @Override
-//                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-//                        if (response.isSuccessful() && response.body() != null) {
-//                            if (off.equals("off")) {
-//                                Toast.makeText(HomeActivity.this, getResources().getString(R.string.notifications) + "   " + getResources().getString(R.string.off), Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(HomeActivity.this, getResources().getString(R.string.notifications) + "  " + getResources().getString(R.string.on), Toast.LENGTH_SHORT).show();
-//                            }
-//
-//
-//                        } else {
-//                            try {
-//                                Log.e("mmmmmmmmmm", response.errorBody().string());
-//                            } catch (IOException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//
-//                            if (response.code() == 500) {
-//                                Toast.makeText(HomeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
-//                            } else {
-//                                Toast.makeText(HomeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-//                                Log.e("faild", response.message());
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<ResponseBody> call, Throwable t) {
-//                        try {
-//                            if (t.getMessage() != null) {
-//                                Log.e("msg_category_error", t.toString() + "__");
-//
-//                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
-//                                    Toast.makeText(HomeActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
-//                                } else {
-//                                    Log.e("faild", t.getMessage());
-//                                    Toast.makeText(HomeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-//                                }
-//                            }
-//                        } catch (Exception e) {
-//                            Log.e("Error", e.getMessage() + "__");
-//                        }
-//                    }
-//                });
-//    }
+    private void updateStatus(String off) {
+        Api.getService(Tags.base_url)
+                .updateStatus("Bearer " + userModel.getData().getToken(),off)
+                .enqueue(new Callback<UserModel>() {
+                    @Override
+                    public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                          if(response.body().getStatus()==200){
+                              Toast.makeText(HomeActivity.this,getResources().getString(R.string.suc),Toast.LENGTH_LONG).show();
+                              preferences.create_update_userdata(HomeActivity.this,response.body());
+                              userModel=response.body();
+                          }
+
+
+                        } else {
+                            try {
+                                Log.e("mmmmmmmmmm", response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+
+                            if (response.code() == 500) {
+                                Toast.makeText(HomeActivity.this, "Server Error", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(HomeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                Log.e("faild", response.message());
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserModel> call, Throwable t) {
+                        try {
+                            if (t.getMessage() != null) {
+                                Log.e("msg_category_error", t.toString() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(HomeActivity.this, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Log.e("faild", t.getMessage());
+                                    Toast.makeText(HomeActivity.this, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        } catch (Exception e) {
+                            Log.e("Error", e.getMessage() + "__");
+                        }
+                    }
+                });
+    }
 
 
     private void back() {

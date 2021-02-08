@@ -4,10 +4,12 @@ package com.apps.reffamily.services;
 import com.apps.reffamily.models.AddProductModel;
 import com.apps.reffamily.models.AllCatogryModel;
 import com.apps.reffamily.models.AllProdutsModel;
+import com.apps.reffamily.models.AllSubCategoryModel;
 import com.apps.reffamily.models.CountryDataModel;
 import com.apps.reffamily.models.PlaceGeocodeData;
 import com.apps.reffamily.models.PlaceMapDetailsData;
 import com.apps.reffamily.models.ProductModel;
+import com.apps.reffamily.models.SingleSubCategoryModel;
 import com.apps.reffamily.models.UserModel;
 
 import java.util.List;
@@ -41,7 +43,7 @@ public interface Service {
     Call<AllCatogryModel> getcategories();
 
     @GET("apiFamily/allFamilyCategories")
-    Call<AllCatogryModel> getcategories(
+    Call<AllSubCategoryModel> getcategories(
             @Header("Authorization") String user_token
 
     );
@@ -270,5 +272,27 @@ public interface Service {
                                    @Field("product_id") String product_id
 
     );
+    @FormUrlEncoded
+    @POST("apiFamily/createNewFamilyCategory")
+    Call<SingleSubCategoryModel> AddSubCategoryWithoutImage(@Header("Authorization") String user_token,
+                                                            @Field("title") String title,
+                                                            @Field("desc") String desc
 
+
+
+    );
+
+    @Multipart
+    @POST("apiFamily/createNewFamilyCategory")
+    Call<SingleSubCategoryModel> AddSubCategoryWithImage(@Header("Authorization") String user_token,
+                                                   @Part("title") RequestBody title,
+                                                   @Part("desc") RequestBody desc,
+                                                   @Part MultipartBody.Part image
+    );
+    @FormUrlEncoded
+    @POST("apiFamily/updateReceiveNotification")
+    Call<UserModel> updateStatus(@Header("Authorization") String user_token,
+                                    @Field("receive_notifications") String receive_notifications
+
+    );
 }

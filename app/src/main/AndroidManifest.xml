@@ -49,7 +49,16 @@
         <activity
             android:name=".activities_fragments.activity_add_Product.AddProductActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />   <activity
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_category.CategoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_add_sub_category.AddSubCategoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
         android:name=".activities_fragments.activity_update_product.ProductDetialsActivity"
         android:configChanges="orientation|keyboardHidden|screenSize"
         android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />

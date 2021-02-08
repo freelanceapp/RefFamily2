@@ -9,14 +9,14 @@
             type="String" />
         <variable
             name="model"
-            type="com.refFamily.models.AddSubCategoryModel" />
+            type="com.apps.reffamily.models.AddSubCategoryModel" />
 
         <variable
             name="listener"
-            type="com.refFamily.interfaces.Listeners.AddSubCategoryListener" />
+            type="com.apps.reffamily.interfaces.Listeners.AddSubCategoryListener" />
         <variable
             name="backListener"
-            type="com.refFamily.interfaces.Listeners.BackListener" />
+            type="com.apps.reffamily.interfaces.Listeners.BackListener" />
 
     </data>
 
@@ -58,7 +58,7 @@
                         android:id="@+id/close"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:src="@drawable/ic_next"
+                        android:src="@drawable/ic_left_arrow"
                         android:padding="8dp"
                         android:tint="@color/colorPrimary"
                         android:layout_gravity="center"
@@ -74,7 +74,7 @@
                     android:textSize="17sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:text="@string/subCategories"
+                    android:text="@string/category"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:textAllCaps="false"
@@ -102,6 +102,35 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:visibility="gone" />
+        <LinearLayout
+            android:id="@+id/linear_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            >
+
+            <ImageView
+                android:id="@+id/iv_no_data"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                android:src="@drawable/no_orders"
+                android:scaleType="centerCrop"
+                android:textColor="@color/gray12"
+                android:textSize="22sp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/no_data_to_view"
+                android:textColor="@color/gray12"
+                android:textSize="22sp"
+                />
+
+        </LinearLayout>
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
