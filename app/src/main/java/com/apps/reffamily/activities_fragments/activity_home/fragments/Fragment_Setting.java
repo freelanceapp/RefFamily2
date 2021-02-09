@@ -26,6 +26,7 @@ import com.apps.reffamily.activities_fragments.activity_language.LanguageActivit
 import com.apps.reffamily.activities_fragments.activity_login.LoginActivity;
 import com.apps.reffamily.activities_fragments.activity_about_app.AboutAppActivity;
 import com.apps.reffamily.activities_fragments.activity_user_feedback.UserFeedbackActivity;
+import com.apps.reffamily.activity_subscription.SubscriptionActivity;
 import com.apps.reffamily.databinding.FragmentSettingBinding;
 import com.apps.reffamily.interfaces.Listeners;
 import com.apps.reffamily.models.BalanceModel;
@@ -268,10 +269,10 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
 //    }
     @Override
     public void onSubscriptions() {
-//        Intent intent = new Intent(activity, SubscriptionActivity.class);
-//        intent.putExtra("data", preferences.getUserData(activity));
-//        startActivity(intent);
-//        getActivity().finish();
+        Intent intent = new Intent(activity, SubscriptionActivity.class);
+        intent.putExtra("data", preferences.getUserData(activity));
+        startActivity(intent);
+        getActivity().finish();
     }
 
     @Override
