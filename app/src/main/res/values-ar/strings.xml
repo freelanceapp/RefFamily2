@@ -96,5 +96,18 @@
     <string name="category_desc">تفاصيل القسم</string>
     <string name="send">ارسال</string>
     <string name="suc">تم بنجاح</string>
-
+    <string name="flirt">يغازل</string>
+    <string name="rude">غير مهذب</string>
+    <string name="smoked">مدخن</string>
+    <string name="late">متأخر</string>
+    <string name="not_adhering">غير ملتزم بالتعليمات الصحية</string>
+    <string name="get_angry">يضايق</string>
+    <string name="fast_service">خدمة سريعة</string>
+    <string name="respectable">محترم</string>
+    <string name="professional">إحترافي</string>
+    <string name="responsive">متجاوب</string>
+    <string name="someting_dont_like">حصل شي ما حبيتة؟</string>
+    <string name="something_you_like">وش اللى حبيت اكثر شئ؟</string>
+    <string name="no_feedback_to_show">لا يوجد اراء لعرضها</string>
+    <string name="comments">تعليقات</string>
 </resources>

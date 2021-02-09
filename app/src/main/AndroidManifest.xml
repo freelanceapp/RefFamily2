@@ -55,13 +55,26 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
+            android:name=".activities_fragments.activity_language.LanguageActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+
+        <activity
             android:name=".activities_fragments.activity_add_sub_category.AddSubCategoryActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
-        android:name=".activities_fragments.activity_update_product.ProductDetialsActivity"
-        android:configChanges="orientation|keyboardHidden|screenSize"
-        android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+            android:name=".activities_fragments.activity_user_feedback.UserFeedbackActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_about_app.AboutAppActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_update_product.ProductDetialsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".activities_fragments.activity_splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -72,6 +85,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
@@ -79,23 +93,23 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-<!--        <service-->
-<!--            android:name="com.apps.ref.notifications.FireBaseMessaging"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="false"-->
-<!--            android:stopWithTask="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-<!--            </intent-filter>-->
-<!--        </service>-->
-<!--        <service-->
-<!--            android:name="com.apps.ref.location_service.LocationService"-->
-<!--            android:enabled="true"-->
-<!--            android:stopWithTask="false" />-->
-<!--        <service-->
-<!--            android:name="com.apps.ref.activities_fragments.activity_chat.ServiceUploadAttachment"-->
-<!--            android:enabled="true"-->
-<!--            android:stopWithTask="false" />-->
+        <!--        <service-->
+        <!--            android:name="com.apps.ref.notifications.FireBaseMessaging"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="false"-->
+        <!--            android:stopWithTask="false">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.google.firebase.MESSAGING_EVENT" />-->
+        <!--            </intent-filter>-->
+        <!--        </service>-->
+        <!--        <service-->
+        <!--            android:name="com.apps.ref.location_service.LocationService"-->
+        <!--            android:enabled="true"-->
+        <!--            android:stopWithTask="false" />-->
+        <!--        <service-->
+        <!--            android:name="com.apps.ref.activities_fragments.activity_chat.ServiceUploadAttachment"-->
+        <!--            android:enabled="true"-->
+        <!--            android:stopWithTask="false" />-->
 
         <provider
             android:name="androidx.core.content.FileProvider"

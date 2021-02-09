@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
-import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,22 +22,27 @@ import androidx.fragment.app.Fragment;
 import com.apps.reffamily.R;
 import com.apps.reffamily.activities_fragments.activity_category.CategoryActivity;
 import com.apps.reffamily.activities_fragments.activity_home.HomeActivity;
+import com.apps.reffamily.activities_fragments.activity_language.LanguageActivity;
 import com.apps.reffamily.activities_fragments.activity_login.LoginActivity;
+import com.apps.reffamily.activities_fragments.activity_about_app.AboutAppActivity;
+import com.apps.reffamily.activities_fragments.activity_user_feedback.UserFeedbackActivity;
 import com.apps.reffamily.databinding.FragmentSettingBinding;
 import com.apps.reffamily.interfaces.Listeners;
+import com.apps.reffamily.models.BalanceModel;
 import com.apps.reffamily.models.DefaultSettings;
+import com.apps.reffamily.models.SettingModel;
 import com.apps.reffamily.models.UserModel;
 import com.apps.reffamily.preferences.Preferences;
-import com.google.firebase.iid.FirebaseInstanceId;
+import com.apps.reffamily.remote.Api;
+import com.apps.reffamily.share.Common;
+import com.apps.reffamily.tags.Tags;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +58,7 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
     private DefaultSettings defaultSettings;
     private UserModel userModel;
     private double balance=0.0;
+    private SettingModel settingModel;
 
     public static Fragment_Setting newInstance() {
         return new Fragment_Setting();
@@ -102,41 +107,115 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
             }
         });
      //   getBalance();
-
+        getBalance();
+        getSetting();
     }
+
+    public void getBalance(){
+        Api.getService(Tags.base_url).getUserBalance(userModel.getData().getToken(), userModel.getData().getId())
+                .enqueue(new Callback<BalanceModel>() {
+                    @Override
+                    public void onResponse(Call<BalanceModel> call, Response<BalanceModel> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+                                binding.setBalance(response.body());
+//                                binding.tvBalance.setText(String.format(Locale.ENGLISH,"%s %s",response.body().getUser_balance(),currency));
+//                                binding.tvTotalRevenue.setText(String.format(Locale.ENGLISH,"%s %s",response.body().getDelivery_fee(),currency));
+//                                binding.tvOrderNum.setText(String.format(Locale.ENGLISH,"%s %s",response.body().getOrders(),getString(R.string.order2)));
+//                                binding.setRate(response.body().getMy_rate());
+//                                if (response.body().getUser_balance()>=0){
+//                                    binding.tvBalance.setTextColor(ContextCompat.getColor(activity,R.color.colorPrimary));
+//                                }else {
+//                                    binding.tvBalance.setTextColor(ContextCompat.getColor(activity,R.color.color_red));
 //
-//    private void getBalance(){
-//        ProgressDialog dialog = Common.createProgressDialog(activity, getString(R.string.wait));
-//        dialog.setCancelable(false);
-//        dialog.show();
-//        Api.getService(Tags.base_url)
-//                .getBalance("Bearer " + userModel.getData().getToken(), userModel.getData().getId())
-//                .enqueue(new Callback<UserBalance>() {
-//                    @Override
-//                    public void onResponse(Call<UserBalance> call, Response<UserBalance> response) {
-//                        dialog.dismiss();
-//                        if (response.isSuccessful() && response.body() != null) {
-//                            binding.setBalance(response.body());
-//                        } else {
-//
-//                            Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
-//                            try {
-//                                Log.e("Error_code", response.code() + "_" + response.errorBody().string());
-//                            } catch (Exception e) {
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<UserBalance> call, Throwable t) {
-//                        try {
-//                            dialog.dismiss();
-//                            Log.e("error", t.getMessage());
-//                        } catch (Exception e) {
-//                        }
-//                    }
-//                });
-//    }
+//                                }
+                            }
+                        } else {
+                            try {
+                                Log.e("error_code", response.code() + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<BalanceModel> call, Throwable t) {
+                        try {
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                } else if (t.getMessage().toLowerCase().contains("socket") || t.getMessage().toLowerCase().contains("canceled")) {
+                                } else {
+                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+    }
+    private void getSetting(){
+        ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));
+        dialog.setCancelable(true);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+        Api.getService(Tags.base_url).getSetting(lang)
+                .enqueue(new Callback<SettingModel>() {
+                    @Override
+                    public void onResponse(Call<SettingModel> call, Response<SettingModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful()) {
+                            if (response.body() != null) {
+                                settingModel = response.body();
+
+
+                            }
+                        } else {
+
+                            dialog.dismiss();
+
+                            try {
+                                Log.e("error_code", response.code() + response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<SettingModel> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+
+                            if (t.getMessage() != null) {
+                                Log.e("error", t.getMessage() + "__");
+
+                                if (t.getMessage().toLowerCase().contains("failed to connect") || t.getMessage().toLowerCase().contains("unable to resolve host")) {
+                                    Toast.makeText(activity, getString(R.string.something), Toast.LENGTH_SHORT).show();
+                                } else if (t.getMessage().toLowerCase().contains("socket") || t.getMessage().toLowerCase().contains("canceled")) {
+                                } else {
+                                    Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+    }
+
 //
 //    public void updatePhoneStatus(String status){
 //        Log.e("status",status);
@@ -211,29 +290,39 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
 
     @Override
     public void onFeedback() {
-//        Intent intent = new Intent(activity, FeedbackActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(activity, UserFeedbackActivity.class);
+        startActivity(intent);
     }
 
     @Override
     public void onLanguageSetting() {
-//        Intent intent = new Intent(activity, LanguageActivity.class);
-//        intent.putExtra("type", 1);
-//        startActivity(intent);
+        Intent intent = new Intent(activity, LanguageActivity.class);
+        intent.putExtra("type", 1);
+        startActivity(intent);
     }
 
     @Override
     public void onTerms() {
-//        Intent intent = new Intent(activity, AboutAppActivity.class);
-//        intent.putExtra("type", 1);
-//        startActivity(intent);
+        if (settingModel != null) {
+            Intent intent = new Intent(activity, AboutAppActivity.class);
+            String url = Tags.base_url + settingModel.getSettings().getTerms_and_conditions();
+            intent.putExtra("url", url);
+            startActivity(intent);
+        } else {
+            Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void onPrivacy() {
-//        Intent intent = new Intent(activity, AboutAppActivity.class);
-//        intent.putExtra("type", 3);
-//        startActivity(intent);
+        if (settingModel != null) {
+            Intent intent = new Intent(activity, AboutAppActivity.class);
+            String url = Tags.base_url + settingModel.getSettings().getPrivacy_policy();
+            intent.putExtra("url", url);
+            startActivity(intent);
+        } else {
+            Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -289,9 +378,14 @@ public class Fragment_Setting extends Fragment implements Listeners.SettingActio
 
     @Override
     public void about() {
-//        Intent intent = new Intent(activity, AboutAppActivity.class);
-//        intent.putExtra("type", 2);
-//        startActivity(intent);
+        if (settingModel != null) {
+            Intent intent = new Intent(activity, AboutAppActivity.class);
+            String url = Tags.base_url + settingModel.getSettings().getTerms_and_conditions();
+            intent.putExtra("url", url);
+            startActivity(intent);
+        } else {
+            Toast.makeText(activity, getString(R.string.failed), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

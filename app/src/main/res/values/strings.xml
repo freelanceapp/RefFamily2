@@ -96,5 +96,18 @@
     <string name="category_desc">Category Desc</string>
     <string name="send">Send</string>
     <string name="suc">Sucess</string>
-
+    <string name="flirt">Flirt</string>
+    <string name="rude">Rude</string>
+    <string name="smoked">Smoked</string>
+    <string name="late">Late</string>
+    <string name="not_adhering">Not adhering to health instructions</string>
+    <string name="get_angry">Get angry</string>
+    <string name="fast_service">Fast Service</string>
+    <string name="respectable">Respectable</string>
+    <string name="professional">Professional</string>
+    <string name="responsive">Responsive</string>
+    <string name="someting_dont_like">Something don\'t like happened?</string>
+    <string name="something_you_like">Something you like more?</string>
+    <string name="no_feedback_to_show">No FeedBack To Show</string>
+    <string name="comments">Comments</string>
 </resources>

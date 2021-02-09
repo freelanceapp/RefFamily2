@@ -5,10 +5,13 @@ import com.apps.reffamily.models.AddProductModel;
 import com.apps.reffamily.models.AllCatogryModel;
 import com.apps.reffamily.models.AllProdutsModel;
 import com.apps.reffamily.models.AllSubCategoryModel;
+import com.apps.reffamily.models.BalanceModel;
 import com.apps.reffamily.models.CountryDataModel;
+import com.apps.reffamily.models.FeedbackDataModel;
 import com.apps.reffamily.models.PlaceGeocodeData;
 import com.apps.reffamily.models.PlaceMapDetailsData;
 import com.apps.reffamily.models.ProductModel;
+import com.apps.reffamily.models.SettingModel;
 import com.apps.reffamily.models.SingleSubCategoryModel;
 import com.apps.reffamily.models.UserModel;
 
@@ -295,4 +298,19 @@ public interface Service {
                                     @Field("receive_notifications") String receive_notifications
 
     );
+    @GET("api/get-comments")
+    Call<FeedbackDataModel> getFeedback(@Header("Authorization") String user_token,
+                                        @Query(value = "user_type") String user_type,
+                                        @Query(value = "user_id") int user_id,
+                                        @Query(value = "page") int page,
+                                        @Query(value = "pagination") String pagination,
+                                        @Query(value = "limit_per_page") int limit_per_page);
+    @GET("api/get-user-balance")
+    Call<BalanceModel> getUserBalance(@Header("Authorization") String user_token,
+                                      @Query("user_id") int user_id);
+    @GET("api/sttings")
+    Call<SettingModel> getSetting(@Query(value = "lang") String lang);
+
+
+
 }

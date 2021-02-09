@@ -16,7 +16,7 @@
 
         <variable
             name="balance"
-            type="com.apps.reffamily.models.UserBalance" />
+            type="com.apps.reffamily.models.BalanceModel" />
 
         <variable
             name="model"

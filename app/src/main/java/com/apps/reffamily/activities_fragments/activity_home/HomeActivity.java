@@ -201,28 +201,28 @@ public class HomeActivity extends AppCompatActivity {
 //    }
 
     private void updateHomeUi() {
-        binding.title.setText(getResources().getString(R.string.home));
+        binding.tvtitle.setText(getResources().getString(R.string.home));
         binding.logo.setVisibility(View.VISIBLE);
         binding.linearNotification.setVisibility(View.VISIBLE);
         binding.ivPreviousOrder.setVisibility(View.GONE);
     }
 
     private void updateOrderUi() {
-        binding.title.setText(getResources().getString(R.string.orders));
+        binding.tvtitle.setText(getResources().getString(R.string.orders));
         binding.linearNotification.setVisibility(View.GONE);
         binding.logo.setVisibility(View.GONE);
         binding.ivPreviousOrder.setVisibility(View.VISIBLE);
     }
 
     private void updateOfferUi() {
-        binding.title.setText(getResources().getString(R.string.offers));
+        binding.tvtitle.setText(getResources().getString(R.string.offers));
         binding.logo.setVisibility(View.VISIBLE);
         binding.linearNotification.setVisibility(View.VISIBLE);
         binding.ivPreviousOrder.setVisibility(View.GONE);
     }
 
     private void updateSettingsUi() {
-        binding.title.setText(getResources().getString(R.string.settings));
+        binding.tvtitle.setText(getResources().getString(R.string.settings));
         binding.logo.setVisibility(View.VISIBLE);
         binding.linearNotification.setVisibility(View.VISIBLE);
         binding.ivPreviousOrder.setVisibility(View.GONE);
@@ -257,7 +257,7 @@ public class HomeActivity extends AppCompatActivity {
 
             }
 
-            //  binding.setTitle(getString(R.string.home));
+            //  binding.settvtitle(getString(R.string.home));
         } catch (Exception e) {
         }
 
